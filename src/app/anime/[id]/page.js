@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-
+import Image from 'next/image';
 const animeID = ({params}) => {
   const router = useRouter();
   const [anime, setAnime] = useState(null); 
@@ -25,47 +25,37 @@ const animeID = ({params}) => {
   }, [id]);
 
   if (!anime) {
-    return <div>Loading...</div>;
+    return <div></div>;
   }
 
   return (
-    <div className="container mx-auto p-4">
-    <h1 className="text-3xl font-bold mb-4">{anime.attributes.canonicalTitle}</h1>
-    <div className="flex flex-col md:flex-row">
-      <img
+    <div className="bg-black h-screen ">
+    <div className="container mx-auto pt-8">
+      <div className="flex flex-col md:flex-row">
+        <div className='mb-2 w-96 h-96 object-cover'>
+          <div className=''>
+           <img
         src={anime.attributes.posterImage.original}
         alt={anime.attributes.canonicalTitle}
-        className="mb-4 w-64 h-96 md:w-1/3 md:mr-4"
+        className="mt-8"
       />
-      <div className="flex flex-col">
-        <p className="text-lg mb-2">Synopsis: {anime.attributes.synopsis}</p>
-        <p>
-          <span className="font-semibold">Start Date:</span> {anime.attributes.startDate}
-        </p>
-        <p>
-          <span className="font-semibold">End Date:</span> {anime.attributes.endDate}
-        </p>
-        <p>
-          <span className="font-semibold">Episode Count:</span> {anime.attributes.episodeCount}
-        </p>
-        <p>
-          <span className="font-semibold">Rating:</span> {anime.attributes.averageRating}
-        </p>
-        <p>
-          <span className="font-semibold">Age Rating:</span> {anime.attributes.ageRating}
-        </p>
-        <p>
-          <span className="font-semibold">Status:</span> {anime.attributes.status}
-        </p>
-        <p>
-          <span className="font-semibold">Popularity Rank:</span> {anime.attributes.popularityRank}
-        </p>
-        <p>
-          <span className="font-semibold">Community Rating:</span> {anime.attributes.ratingRank}
-        </p>
+          </div>
+        </div>
+        <div className="md:w-2/3 md:pl-8 ">
+          <h1 className="text-4xl font-bold text-white">{anime.attributes.canonicalTitle}</h1>
+          <p className="text-black mt-6 bg-slate-100 py-4 pl-12 pr-4 rounded-md" >Description: {anime.attributes.synopsis}</p>
+          <p className="text-black mt-6 bg-slate-100 py-4 pl-12 pr-4 rounded-md">Status: {anime.attributes.status}</p>
+          <p className="text-black mt-6 bg-slate-100 py-4 pl-12 pr-4 rounded-md">Episode: {anime.attributes.episodeCount}</p>
+          <p className="text-black mt-6 bg-slate-100 py-4 pl-12 pr-4 rounded-md">Rating: {anime.attributes.averageRating}</p>
+          <p className="text-black mt-6 bg-slate-100 py-4 pl-12 pr-4 rounded-md">Popular: {anime.attributes.popularityRank}</p>
+         
+         
+      
+        </div>
       </div>
     </div>
   </div>
+
   
   );
 };

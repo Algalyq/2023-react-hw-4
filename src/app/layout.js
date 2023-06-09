@@ -12,8 +12,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html>
-			<body className="wrapper">
-				<Navbar />
+			<body>
+        
 				{children}
 			</body>
 		</html>
